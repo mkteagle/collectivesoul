@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* ================================================
+   COLLECTIVE SOUL - 2026 WEBSITE
+   Neo-New-Wave Maximalism
+   ================================================ */
+
+@theme inline {
+  /* Primary Palette - From Album Art */
+  --color-magenta: #E91E8C;
+  --color-magenta-dark: #C4177A;
+  --color-magenta-light: #FF4DA6;
+  --color-cyan: #00D4D4;
+  --color-cyan-dark: #00A8A8;
+  --color-cyan-light: #33FFFF;
+
+  /* Base Colors */
+  --color-black: #0A0A0A;
+  --color-white: #FAFAFA;
+  --color-gray-dark: #1A1A1A;
+  --color-gray: #333333;
+  --color-gray-light: #666666;
+
+  /* Fonts */
+  --font-display: var(--font-bebas);
+  --font-mono: var(--font-space-mono);
+  --font-body: var(--font-outfit);
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
+}
+
+@keyframes vinyl-spin {
+  from { transform: translateX(30%) rotate(0deg); }
+  to { transform: translateX(30%) rotate(360deg); }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: var(--color-cyan); box-shadow: 0 0 0 0 rgba(0, 212, 212, 0.4); }
+  50% { border-color: var(--color-magenta); box-shadow: 0 0 20px 0 rgba(233, 30, 140, 0.2); }
+}
+
+@keyframes scroll-dot {
+  0%, 100% { left: 0; }
+  50% { left: 55px; }
+}
+
+@keyframes pattern-shift {
+  from { background-position: 0 0; }
+  to { background-position: 20px 20px; }
+}
+
+@keyframes pulse-bg {
+  0%, 100% { transform: scale(1); opacity: 0.15; }
+  50% { transform: scale(1.1); opacity: 0.2; }
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-white);
+  overflow-x: hidden;
+}
+
+/* Halftone Overlay Effect */
+.halftone-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: radial-gradient(var(--color-cyan) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Floating shapes animation */
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+.animate-float-delayed-1 {
+  animation: float 10s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.animate-float-delayed-2 {
+  animation: float 10s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+/* Marquee */
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Vinyl spin */
+.animate-vinyl-spin {
+  animation: vinyl-spin 8s linear infinite;
+}
+
+/* Pattern shift */
+.animate-pattern-shift {
+  animation: pattern-shift 10s linear infinite;
+}
+
+/* Pulse border */
+.animate-pulse-border {
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+/* Pulse background */
+.animate-pulse-bg {
+  animation: pulse-bg 8s ease-in-out infinite;
+}
+
+/* Scroll indicator */
+.scroll-indicator::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  background: var(--color-cyan);
+  border-radius: 50%;
+  animation: scroll-dot 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-magenta);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-magenta-light);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-magenta);
+  color: var(--color-white);
+}
