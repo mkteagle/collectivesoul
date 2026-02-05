@@ -5,7 +5,8 @@
       "WebFetch(domain:collectivesoul.com)",
       "WebFetch(domain:stores.portmerch.com)",
       "WebFetch(domain:www.bandsintown.com)",
-      "WebFetch(domain:www.ticketmaster.com)"
+      "WebFetch(domain:www.ticketmaster.com)",
+      "Bash(ls:*)"
     ]
   }
 }
