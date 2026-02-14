@@ -34,16 +34,16 @@ export default function Tour() {
       {/* Section Header */}
       <div className="px-6 lg:px-16 mb-12">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-6"
+          className="text-center"
         >
-          <span className="font-mono text-xs text-cyan tracking-[0.1em]">01</span>
-          <h2 className="font-[family-name:var(--font-bebas)] text-4xl lg:text-6xl tracking-wide">
+          <span className="font-mono text-xs text-cyan tracking-[0.3em] block mb-4">01</span>
+          <h2 className="font-[family-name:var(--font-bebas)] text-5xl lg:text-7xl tracking-wide">
             TOUR DATES
           </h2>
-          <div className="flex-1 h-px bg-gradient-to-r from-gray to-transparent" />
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-magenta to-transparent mx-auto mt-4" />
         </motion.div>
       </div>
 
@@ -52,7 +52,7 @@ export default function Tour() {
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="px-6 lg:px-16 max-w-5xl"
+        className="px-6 lg:px-16 max-w-5xl mx-auto"
       >
         <a
           className="bit-widget-initializer"
@@ -147,7 +147,7 @@ export default function Tour() {
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.8 }}
-        className="px-6 lg:px-16 mt-10 text-center lg:text-left"
+        className="px-6 lg:px-16 mt-10 text-center"
       >
         <motion.a
           href={`https://www.bandsintown.com/a/3805-collective-soul`}

@@ -60,7 +60,7 @@ export default function VideoHero({ videoSrc, posterSrc }: VideoHeroProps) {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden pt-24 lg:pt-28"
     >
       {/* Video Background Layer */}
       {videoSrc && (

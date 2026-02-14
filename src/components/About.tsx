@@ -25,39 +25,39 @@ export default function About() {
       {/* Section Header */}
       <div className="px-6 lg:px-16 mb-12">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-6"
+          className="text-center"
         >
-          <span className="font-mono text-xs text-cyan tracking-[0.1em]">05</span>
-          <h2 className="font-[family-name:var(--font-bebas)] text-4xl lg:text-6xl tracking-wide">
+          <span className="font-mono text-xs text-cyan tracking-[0.3em] block mb-4">07</span>
+          <h2 className="font-[family-name:var(--font-bebas)] text-5xl lg:text-7xl tracking-wide">
             THE BAND
           </h2>
-          <div className="flex-1 h-px bg-gradient-to-r from-gray to-transparent" />
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-magenta to-transparent mx-auto mt-4" />
         </motion.div>
       </div>
 
       {/* Content */}
-      <div className="px-6 lg:px-16 max-w-6xl">
+      <div className="px-6 lg:px-16 max-w-6xl mx-auto">
         {/* About Text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mb-16"
+          className="max-w-4xl mx-auto mb-16 text-center"
         >
           <p className="font-[family-name:var(--font-bebas)] text-2xl lg:text-4xl text-magenta leading-tight mb-6">
-            &ldquo;It&apos;s an honor and privilege.&rdquo;
+            &ldquo;We&apos;re just going to keep rolling. That&apos;s the plan.&rdquo;
           </p>
 
           {/* Intro paragraph - always visible */}
           <div className="text-gray-light text-base lg:text-lg leading-relaxed font-[family-name:var(--font-outfit)] space-y-4">
             <p>
-              Ed Roland can describe 30 years in Collective Soul with two words. &ldquo;It&apos;s an honor and privilege,&rdquo; said the frontman and songwriter behind the Georgia-born band known for a bedrock of time-tested hits. &ldquo;It&apos;s that simple. Just being able to do what you love, it&apos;s an honor and a privilege.&rdquo;
+              More than three decades in, Collective Soul isn&apos;t slowing down – they&apos;re accelerating. With over 15 million albums sold worldwide, six Gold or Platinum records, and seven #1 singles to their name, the Georgia-born band led by frontman and songwriter Ed Roland has cemented a legacy that few rock acts can match. And yet, in their 31st year, they&apos;re as prolific and road-hungry as ever.
             </p>
             <p>
-              Since launching a major label career in 1994, Collective Soul has charted a path that most rock bands dream of, but only few achieve. They cut through a noisy 1990s rock scene with a knack for stick-to-you-like-glue melodies, roof-shaking guitars, and a touch of Southern grit. Behind enduring singles like &ldquo;Shine,&rdquo; &ldquo;December&rdquo; and &ldquo;The World I Know,&rdquo; the band hit the ground running for what would not be a short-lived sprint, but a steady marathon of uncompromising – and always catchy – albums.
+              Since launching a major label career in 1994, Collective Soul cut through a noisy &apos;90s rock scene with stick-to-you-like-glue melodies, roof-shaking guitars, and a touch of Southern grit. Behind enduring singles like &ldquo;Shine,&rdquo; &ldquo;December&rdquo; and &ldquo;The World I Know,&rdquo; the band hit the ground running for what would not be a short-lived sprint, but a steady marathon of uncompromising – and always catchy – albums. As bassist Will Turpin has noted, the band is selling more tickets now than they did in the &apos;90s – proof that Collective Soul&apos;s music hasn&apos;t just endured, it&apos;s grown.
             </p>
           </div>
 
@@ -73,65 +73,49 @@ export default function About() {
               >
                 <div className="text-gray-light text-base lg:text-lg leading-relaxed font-[family-name:var(--font-outfit)] space-y-4 mt-4">
                   <p>
-                    And in the same year the band celebrates three decades of music making, Collective Soul returns with what may be its most ambitious project to-date: HERE TO ETERNITY, a double LP cut in the California home once owned by Elvis Presley. With sharp, polished rock riffs and Roland&apos;s signature wise-to-the-world storytelling, HERE TO ETERNITY plays like a full-throttle Collective Soul album from the moment it begins spilling out of stereo speakers.
+                    The band&apos;s 2024 double LP HERE TO ETERNITY – their 12th studio album and most ambitious project to date – proved the point. A sprawling 20-track, 70-minute effort recorded at Elvis Presley&apos;s former Palm Springs estate, the album debuted at No. 14 on Billboard&apos;s Top Current Album chart. Ed Roland – alongside brother and co-founding member Dean Roland (guitar), childhood friend and bassist Will Turpin, guitarist Jesse Triplett and drummer Johnny Rabb – decamped for a month to the King&apos;s one-time California getaway to lay down tracks steeped in rock &apos;n&apos; roll history.
                   </p>
                   <p>
-                    &ldquo;When I gave the album to management and radio promo,&rdquo; he said, &ldquo;I was like, &lsquo;Put the needle on any song, I&apos;m that proud of it.&rsquo;&rdquo;
+                    &ldquo;When I gave the album to management and radio promo,&rdquo; Ed Roland said, &ldquo;I was like, &lsquo;Put the needle on any song, I&apos;m that proud of it.&rsquo;&rdquo;
                   </p>
                   <p>
-                    Roland – alongside brother and co-founding member Dean Roland (guitar), childhood friend and bassist Will Turpin, guitarist Jesse Triplett and drummer Johnny Rabb – decamped for a month to Palm Springs, California, to record virtually all of HERE TO ETERNITY inside a house once owned by Elvis and Priscilla Presley. Called the &ldquo;Elvis Presley Palm Springs Estate,&rdquo; it&apos;s believed to be the only home besides the famed Memphis estate owned by Presley at the time of his death.
+                    The sessions at the Elvis Presley Palm Springs Estate – believed to be the only home besides Graceland owned by Presley at the time of his death – left their mark on every member. &ldquo;The sticky DNA, with Elvis being there,&rdquo; Turpin said. &ldquo;All pink tiles. It&apos;s straight out of 1977. It was super cool just to be there and in the zone.&rdquo; Triplett put it another way: &ldquo;The vibe and energy of that place translated through the music. You almost don&apos;t realize until the end and listen to the rough mixes and you go &lsquo;oh shit … we did that.&rsquo;&rdquo; And Rabb added simply, &ldquo;The energy was natural and the flow was incredible. We were all just in the pocket.&rdquo;
                   </p>
                   <p>
-                    Stepping inside the King&apos;s one-time California getaway, his influence seeped into the album-making process. E. Roland and album co-producer Shawn Grove slept in the home for the duration of the sessions, which overlapped with the death of Presley&apos;s daughter Lisa Marie in early 2023.
+                    The album features guest appearances from Paul McCartney&apos;s longtime guitarist Brian Ray, Sheryl Crow bandleader Peter Stroud, and Mickey Thomas of Jefferson Starship fame – the result of Ed Roland&apos;s talent for turning a casual Palm Springs sidewalk encounter into a recording session. &ldquo;I&apos;m gettin&apos; pretty sneaky in my old age,&rdquo; he said with a laugh.
                   </p>
                   <p>
-                    &ldquo;The sticky DNA, with Elvis being there,&rdquo; Turpin said, &ldquo;You can just tell it was his designs. All pink tiles. It&apos;s straight out of 1977. It was super cool just to be there and in the zone.&rdquo;
+                    Collective Soul spent 2024 tearing across North America on the 43-city &ldquo;Summer Camp with Trucks Tour&rdquo; alongside Hootie &amp; the Blowfish and Edwin McCain, playing premier venues from Fenway Park in Boston to Bridgestone Arena in Nashville. Then in 2025, they reunited with +LIVE+ for the first time in 17 years on the 30-date &ldquo;Summer Unity Tour,&rdquo; co-headlining amphitheaters coast-to-coast with Our Lady Peace and Greylin James Rue. Concert reviewers regularly singled out Collective Soul as the highlight of the evening, with the band mixing deep cuts and new material alongside the hits that packed the houses.
                   </p>
                   <p>
-                    Or, in Triplett&apos;s words: &ldquo;It&apos;s not something you can put your finger on specifically, but the vibe and energy of that place translated through the music. You almost don&apos;t realize until the end and listen to the rough mixes and you go &lsquo;oh shit … we did that.&rsquo;&rdquo;
+                    &ldquo;We&apos;ve never tried to adhere to any trends, for better or worse,&rdquo; Dean Roland reflected. &ldquo;We&apos;re just going to keep rolling and keep it rolling. That&apos;s the plan as of now.&rdquo;
                   </p>
                   <p>
-                    Rabb added, &ldquo;The energy was natural and the flow was incredible. We were all just in the pocket and the chemistry works so well.&rdquo;
+                    The band&apos;s story got its definitive telling in July 2025 with the release of GIVE ME A WORD: THE COLLECTIVE SOUL STORY, a feature-length documentary directed by Joseph Rubinstein. Filmed at the Elvis estate during the HERE TO ETERNITY sessions and woven with archival footage spanning three decades, the film features appearances by Sammy Hagar and Dolly Parton – who recounts how her version of &ldquo;Shine&rdquo; won her a Grammy, while Ed Roland chuckles that the band has never been nominated. The documentary is available on Apple TV, Amazon, and Blu-ray/DVD.
                   </p>
                   <p>
-                    Listeners hear the results on HERE TO ETERNITY, a thrilling no-skips effort from start-to-finish. The album kicks into gear with songs the blues-tinged &ldquo;Bluer Than Blue&rdquo; and jangly roots rocker &ldquo;Not The Same&rdquo; before later cruising into the band&apos;s long-running appreciation for Elton John and The Beatles with &ldquo;Sister and Mary.&rdquo;
+                    Will Turpin, who took over his late father&apos;s Reel 2 Reel Studios in Georgia, has spoken movingly about the documentary&apos;s tribute to his dad, Bill Turpin, and the family roots that have always anchored the band. &ldquo;Find your allies, whether it&apos;s bandmates or people who like what you&apos;re doing,&rdquo; Dean Roland has advised. &ldquo;Just have your foundation and build off that.&rdquo;
                   </p>
                   <p>
-                    They incorporate a Presley-like shuffle beat on throwback rockabilly jam &ldquo;Matter of Fact,&rdquo; adopt stripped-down balladeering on tender-to-the-touch number &ldquo;Letter From E,&rdquo; and croon a piano-backed tale of love on &ldquo;Be The One,&rdquo; which Ed Roland recorded solo in Elvis&apos; former bedroom. Plus, one of the standout songs on HERE TO ETERNITY wasn&apos;t cut in Palm Springs, but in another room where Elvis once walked – the famed Ryman Auditorium in Nashville, Tennessee. Ed Roland tracked a live rendition of &ldquo;Bob Dylan (Where Are You Today)&rdquo; during a sold-out tour stop inside the hallowed Ryman halls.
+                    Now in 2026, Collective Soul shows no signs of easing up. The band kicked off the year with a headlining U.S. tour launched in January and a three-night residency at The Venetian Theatre in Las Vegas. They&apos;re set to join Creed&apos;s &ldquo;Summer of &apos;99 and Beyond Cruise&rdquo; in April, with more dates being added throughout the year. And on Record Store Day – April 18, 2026 – the band drops TOUCH &amp; GO, their 13th studio album. A 10-song LP drawing inspiration from The Cars and New Wave, it marks a new musical chapter for a band that refuses to stand still.
                   </p>
                   <p>
-                    But no song grabs on the first listen quite like &ldquo;Mother&apos;s Love,&rdquo; the lead single and opening number debuted on the road last year. Featuring longtime Paul McCartney guitarist Brian Ray on slide guitar, &ldquo;Mother&apos;s Love&rdquo; blasts off the turntable with a foot-stompin&apos;, gnarled riff before gliding into a chorus layered by high-flying harmonies.
+                    Three decades and counting. As drummer Johnny Rabb put it on the Modern Drummer Podcast, the chemistry just works. And as the title of their last album suggests – here to eternity.
                   </p>
-                  <p>
-                    On &ldquo;Mother&apos;s Love,&rdquo; Ed Roland sings: &ldquo;Guess we&apos;re all misunderstood/To what we can and what we should/Still I find above/All my strength from Mother&apos;s Love.&rdquo;
-                  </p>
-                  <p>
-                    Alongside Ray, who lives in Palm Springs, guests on the album include longtime Sheryl Crow bandleader Peter Stroud and Mickey Thomas of Jefferson Starship fame.
-                  </p>
-                  <p>
-                    &ldquo;I happened to be walkin&apos; down the street and I had met Brian Ray a couple of times,&rdquo; Ed Roland said. &ldquo;I saw him and was like, &lsquo;Brian, hey man. Why don&apos;t you come over and break bread? We&apos;re up at Elvis&apos; house.&rsquo;&rdquo;
-                  </p>
-                  <p>
-                    The invite for a bite of grub turned into a session, of course. With a laugh, Ed Roland added, &ldquo;I&apos;m gettin&apos; pretty sneaky in my old age.&rdquo;
-                  </p>
-                  <p>
-                    And the album closes with &ldquo;Over and Out,&rdquo; an ominous folk-rock tune about life moving on – no matter if you&apos;re ready or not.
-                  </p>
-                  <p>
-                    &ldquo;Last year, my niece was going over to college…and I don&apos;t understand that yet, because my son&apos;s 14,&rdquo; Ed Roland said. &ldquo;The song&apos;s about letting your children go and letting them start their adulthood. I tried to feel what my sister and brother-in-law were feeling, which I&apos;m about to feel.&rdquo;
-                  </p>
-                  <p>
-                    This summer, the band takes HERE TO ETERNITY on the road with Hootie & the Blowfish and Edwin McCain for the &ldquo;Summer Camp with Trucks Tour.&rdquo; A coast-to-coast run inside some of North America&apos;s premier venues, stops including Fenway Park in Boston, Bridgestone Arena in Nashville, the Honda Center in Anaheim, California and Pine Knob Music Theatre in Detroit.
-                  </p>
-                  <p>
-                    With 20 new songs, how does the band decide which to play live? You&apos;ll have to catch a show to find out.
-                  </p>
-                  <p>
-                    &ldquo;It&apos;s tricky,&rdquo; Dean Roland said. &ldquo;We know we wanna play the songs people came there to see, but it&apos;s still fun. We&apos;re gettin&apos; up there, doin&apos; our thing.&rdquo;
-                  </p>
-                  <p>
-                    And fans can bet on Collective Soul taking songs from HERE TO ETERNITY on the road for years to come. As the album title suggests, three decades is just the start.
-                  </p>
+                  <div className="mt-8 pt-6 border-t border-gray/30">
+                    <p className="font-mono text-[0.65rem] tracking-[0.1em] text-gray-light/50 leading-relaxed">
+                      SOURCES: Quotes and information sourced from{" "}
+                      <a href="https://www.billboard.com/music/rock/collective-soul-live-2025-us-summer-unity-tour-dates-1235923460/" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan transition-colors">Billboard</a>,{" "}
+                      <a href="https://www.galleryspacemedia.com/interviews/collective-souls-dean-roland-shares-insights-on-music-origins-new-album-and-future-plans" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan transition-colors">Gallery Space Media</a>,{" "}
+                      <a href="https://www.moderndrummer.com/2025/04/johnny-rabb-collective-soul-modern-drummer-podcast-with-david-frangioni-35/" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan transition-colors">Modern Drummer</a>,{" "}
+                      <a href="https://www.notreble.com/buzz/2025/06/05/groove-episode-126-will-turpin-collective-soul/" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan transition-colors">No Treble</a>,{" "}
+                      <a href="https://rockandbluesmuse.com/2025/12/09/collective-soul-announces-u-s-headline-tour-2026/" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan transition-colors">Rock and Blues Muse</a>,{" "}
+                      <a href="https://www.songwriteruniverse.com/ed-roland-collective-soul-songs-shine-here-to-eternity/" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan transition-colors">Songwriter Universe</a>,{" "}
+                      and the documentary{" "}
+                      <a href="https://www.givemeawordfilm.com/" target="_blank" rel="noopener noreferrer" className="underline hover:text-cyan transition-colors italic">Give Me a Word: The Collective Soul Story</a>{" "}
+                      (2025).
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -140,8 +124,8 @@ export default function About() {
           {/* Read More / Read Less Button */}
           <motion.button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-6 inline-flex items-center gap-2 font-mono text-sm tracking-[0.15em] text-cyan hover:text-magenta transition-colors group"
-            whileHover={{ x: 5 }}
+            className="mt-6 inline-flex items-center gap-2 font-mono text-sm tracking-[0.15em] text-cyan hover:text-magenta transition-colors group mx-auto"
+            whileHover={{ scale: 1.05 }}
           >
             <span>{isExpanded ? "READ LESS" : "READ MORE"}</span>
             <motion.svg

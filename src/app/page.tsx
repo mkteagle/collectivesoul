@@ -9,7 +9,19 @@ const Tour = dynamic(() => import("@/components/Tour"), {
   loading: () => <SectionSkeleton />,
 });
 
+const Stats = dynamic(() => import("@/components/Stats"), {
+  loading: () => <SectionSkeleton height="small" />,
+});
+
 const Music = dynamic(() => import("@/components/Music"), {
+  loading: () => <SectionSkeleton />,
+});
+
+const Documentary = dynamic(() => import("@/components/Documentary"), {
+  loading: () => <SectionSkeleton />,
+});
+
+const Videos = dynamic(() => import("@/components/Videos"), {
   loading: () => <SectionSkeleton />,
 });
 
@@ -30,12 +42,12 @@ const Connect = dynamic(() => import("@/components/Connect"), {
 });
 
 // Lightweight loading skeleton
-function SectionSkeleton() {
+function SectionSkeleton({ height = "normal" }: { height?: "small" | "normal" }) {
   return (
-    <div className="py-24 lg:py-32 px-6 lg:px-16">
+    <div className={`${height === "small" ? "py-12" : "py-24 lg:py-32"} px-6 lg:px-16`}>
       <div className="animate-pulse">
-        <div className="h-8 bg-gray-dark rounded w-48 mb-8" />
-        <div className="h-64 bg-gray-dark rounded" />
+        <div className="h-8 bg-gray-dark rounded w-48 mb-8 mx-auto" />
+        <div className={`${height === "small" ? "h-24" : "h-64"} bg-gray-dark rounded`} />
       </div>
     </div>
   );
@@ -47,13 +59,15 @@ export default function Home() {
       <Navigation />
 
       {/* Hero - Can pass videoSrc and posterSrc for video background */}
-      {/* Example: videoSrc="/videos/hero-bg.mp4" posterSrc="/images/hero-poster.jpg" */}
       <VideoHero />
 
       <Marquee />
 
       <Tour />
+      <Stats />
       <Music />
+      <Documentary />
+      <Videos />
       <Store />
       <Photos />
       <About />

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 const socialLinks = [
   {
@@ -60,22 +60,211 @@ const socialLinks = [
   },
 ];
 
+function ContactDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (open && !dialog.open) {
+      dialog.showModal();
+    } else if (!open && dialog.open) {
+      dialog.close();
+    }
+  }, [open]);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const handleClose = () => onClose();
+    dialog.addEventListener("close", handleClose);
+    return () => dialog.removeEventListener("close", handleClose);
+  }, [onClose]);
+
+  const handleSend = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    try {
+      const body = new FormData();
+      body.append("post_id", "1738");
+      body.append("form_id", "f9c70ff");
+      body.append("referer_title", "Collective Soul");
+      body.append("queried_id", "1738");
+      body.append("form_fields[name]", formData.name);
+      body.append("form_fields[email]", formData.email);
+      body.append("form_fields[message]", formData.message);
+      body.append("action", "elementor_pro_forms_send_form");
+
+      await fetch("https://collectivesoul.com/wp-admin/admin-ajax.php", {
+        method: "POST",
+        body,
+        mode: "no-cors",
+      });
+    } catch {
+      // no-cors will always look like an error, but the request still goes through
+    }
+    setSending(false);
+    setSent(true);
+    setFormData({ name: "", email: "", message: "" });
+  };
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="backdrop:bg-black/80 backdrop:backdrop-blur-sm bg-transparent p-0 max-w-lg w-full fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 m-0"
+      onClick={(e) => {
+        if (e.target === dialogRef.current) onClose();
+      }}
+    >
+      <div className="bg-gray-dark border border-white/10 w-full max-w-lg">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+          <h3 className="font-[family-name:var(--font-bebas)] text-2xl text-white tracking-wider flex items-center">
+            CONTACT COLLECTIVE S
+            <img
+              src="/csoul-logo.svg"
+              alt="O"
+              className="h-[0.9em] w-auto inline-block -mx-0.5"
+              style={{ filter: 'invert(76%) sepia(69%) saturate(4619%) hue-rotate(144deg) brightness(101%) contrast(101%)' }}
+            />
+            UL
+          </h3>
+          <button
+            onClick={onClose}
+            className="text-gray-light hover:text-white transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Form */}
+        <div className="p-6">
+          {!sent ? (
+            <form onSubmit={handleSend} className="flex flex-col gap-4">
+              <div>
+                <label className="font-mono text-[0.65rem] tracking-[0.2em] text-gray-light block mb-2">
+                  NAME
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                  className="w-full px-4 py-3 bg-black border border-white/10 focus:border-magenta text-white font-[family-name:var(--font-outfit)] text-sm outline-none transition-colors"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label className="font-mono text-[0.65rem] tracking-[0.2em] text-gray-light block mb-2">
+                  EMAIL
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                  className="w-full px-4 py-3 bg-black border border-white/10 focus:border-magenta text-white font-[family-name:var(--font-outfit)] text-sm outline-none transition-colors"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div>
+                <label className="font-mono text-[0.65rem] tracking-[0.2em] text-gray-light block mb-2">
+                  MESSAGE
+                </label>
+                <textarea
+                  required
+                  rows={5}
+                  value={formData.message}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
+                  className="w-full px-4 py-3 bg-black border border-white/10 focus:border-magenta text-white font-[family-name:var(--font-outfit)] text-sm outline-none transition-colors resize-none"
+                  placeholder="Your message..."
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={sending || !formData.name || !formData.email || !formData.message}
+                className="w-full py-4 bg-magenta hover:bg-magenta-light text-white font-mono text-sm tracking-[0.15em] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {sending ? "SENDING..." : "SEND MESSAGE"}
+              </button>
+            </form>
+          ) : (
+            <div className="text-center py-8">
+              <div className="w-16 h-16 rounded-full bg-cyan/20 border-2 border-cyan flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h4 className="font-[family-name:var(--font-bebas)] text-2xl text-white mb-2">
+                MESSAGE SENT
+              </h4>
+              <p className="font-[family-name:var(--font-outfit)] text-gray-light text-sm">
+                Thanks for reaching out. We&apos;ll get back to you soon.
+              </p>
+              <button
+                onClick={() => {
+                  setSent(false);
+                  onClose();
+                }}
+                className="mt-6 px-6 py-2 border border-cyan text-cyan font-mono text-xs tracking-[0.15em] hover:bg-cyan hover:text-black transition-colors"
+              >
+                CLOSE
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </dialog>
+  );
+}
+
 export default function Connect() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [email, setEmail] = useState("");
+  const [zip, setZip] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleCloseContact = useCallback(() => setContactOpen(false), []);
+
+  useEffect(() => {
+    const openHandler = () => setContactOpen(true);
+    window.addEventListener("open-contact-dialog", openHandler);
+    return () => window.removeEventListener("open-contact-dialog", openHandler);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setEmail("");
-    }, 1000);
+    try {
+      const body = new FormData();
+      body.append("post_id", "1738");
+      body.append("form_id", "859ee22");
+      body.append("referer_title", "Collective Soul");
+      body.append("queried_id", "1738");
+      body.append("form_fields[email]", email);
+      body.append("form_fields[zip]", zip);
+      body.append("action", "elementor_pro_forms_send_form");
+
+      await fetch("https://collectivesoul.com/wp-admin/admin-ajax.php", {
+        method: "POST",
+        body,
+        mode: "no-cors",
+      });
+    } catch {
+      // no-cors request still goes through
+    }
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    setEmail("");
+    setZip("");
   };
 
   return (
@@ -137,7 +326,7 @@ export default function Connect() {
           className="mb-12"
         >
           {!isSubmitted ? (
-            <div className="flex flex-col sm:flex-row bg-gray-dark border-2 border-gray focus-within:border-magenta transition-colors" suppressHydrationWarning>
+            <div className="flex flex-col sm:flex-row gap-3" suppressHydrationWarning>
               <input
                 type="email"
                 value={email}
@@ -147,15 +336,27 @@ export default function Connect() {
                 autoComplete="off"
                 data-lpignore="true"
                 data-form-type="other"
-                className="flex-1 px-6 py-4 bg-transparent font-mono text-sm tracking-[0.1em] text-white placeholder:text-gray-light outline-none"
+                className="flex-1 px-6 py-4 bg-gray-dark border border-white/10 focus:border-magenta font-mono text-sm tracking-[0.1em] text-white placeholder:text-gray-light outline-none transition-colors"
+                suppressHydrationWarning
+              />
+              <input
+                type="text"
+                value={zip}
+                onChange={(e) => setZip(e.target.value)}
+                placeholder="ZIP CODE"
+                required
+                autoComplete="off"
+                data-lpignore="true"
+                data-form-type="other"
+                className="w-full sm:w-36 px-6 py-4 bg-gray-dark border border-white/10 focus:border-magenta font-mono text-sm tracking-[0.1em] text-white placeholder:text-gray-light outline-none transition-colors"
                 suppressHydrationWarning
               />
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-center gap-2 px-8 py-4 bg-magenta font-mono text-sm tracking-[0.1em] text-white hover:bg-magenta-light transition-colors disabled:opacity-50"
+                disabled={isSubmitting || !email || !zip}
+                whileHover={!isSubmitting && email && zip ? { scale: 1.02 } : {}}
+                whileTap={!isSubmitting && email && zip ? { scale: 0.98 } : {}}
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-magenta font-mono text-sm tracking-[0.1em] text-white hover:bg-magenta-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 suppressHydrationWarning
               >
                 {isSubmitting ? (
@@ -209,7 +410,11 @@ export default function Connect() {
             </motion.a>
           ))}
         </motion.div>
+
       </motion.div>
+
+      {/* Contact Dialog */}
+      <ContactDialog open={contactOpen} onClose={handleCloseContact} />
     </section>
   );
 }

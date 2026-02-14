@@ -7,6 +7,7 @@ import Link from "next/link";
 const navLinks = [
   { href: "#tour", label: "TOUR" },
   { href: "#music", label: "MUSIC" },
+  { href: "#videos", label: "VIDEOS" },
   { href: "#store", label: "STORE" },
   { href: "#photos", label: "PHOTOS" },
   { href: "#about", label: "ABOUT" },
@@ -37,7 +38,7 @@ export default function Navigation() {
       >
         {/* Logo */}
         <Link href="/" className="flex flex-col leading-none group">
-          <span className="font-mono text-xs tracking-[0.3em] text-white/80 group-hover:text-white transition-colors">
+          <span className="font-[family-name:var(--font-bebas)] text-xl lg:text-2xl tracking-[0.35em] text-white group-hover:text-cyan transition-colors">
             COLLECTIVE
           </span>
           <span className="font-[family-name:var(--font-bebas)] text-5xl lg:text-6xl tracking-widest text-magenta flex items-center font-bold">

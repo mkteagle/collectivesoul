@@ -41,22 +41,22 @@ export default function Store() {
       {/* Section Header */}
       <div className="px-6 lg:px-16 mb-12">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-6"
+          className="text-center"
         >
-          <span className="font-mono text-xs text-cyan tracking-[0.1em]">03</span>
-          <h2 className="font-[family-name:var(--font-bebas)] text-4xl lg:text-6xl tracking-wide">
+          <span className="font-mono text-xs text-cyan tracking-[0.3em] block mb-4">03</span>
+          <h2 className="font-[family-name:var(--font-bebas)] text-5xl lg:text-7xl tracking-wide">
             STORE
           </h2>
-          <div className="flex-1 h-px bg-gradient-to-r from-gray to-transparent" />
+          <div className="w-24 h-px bg-gradient-to-r from-transparent via-magenta to-transparent mx-auto mt-4" />
         </motion.div>
       </div>
 
       {/* Products Grid */}
       <div className="px-6 lg:px-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-6xl">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
           {products.map((product, i) => (
             <motion.a
               key={product.name}
@@ -108,7 +108,7 @@ export default function Store() {
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.6 }}
-        className="px-6 lg:px-16 mt-10 text-center lg:text-left"
+        className="px-6 lg:px-16 mt-10 text-center"
       >
         <motion.a
           href={STORE_URL}
