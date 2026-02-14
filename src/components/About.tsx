@@ -2,13 +2,14 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
+import Image from "next/image";
 
 const bandMembers = [
-  { name: "Ed Roland", role: "Lead Vocals, Guitar", image: "/band_images/ed.png" },
-  { name: "Dean Roland", role: "Rhythm Guitar", image: "/band_images/dean.png" },
-  { name: "Will Turpin", role: "Bass", image: "/band_images/will.png" },
-  { name: "Jesse Triplett", role: "Lead Guitar", image: "/band_images/jesse.png" },
-  { name: "Johnny Rabb", role: "Drums", image: "/band_images/johnny.png" },
+  { name: "Ed Roland", role: "Lead Vocals, Guitar", image: "/band_images/ed.webp" },
+  { name: "Dean Roland", role: "Rhythm Guitar", image: "/band_images/dean.webp" },
+  { name: "Will Turpin", role: "Bass", image: "/band_images/will.webp" },
+  { name: "Jesse Triplett", role: "Lead Guitar", image: "/band_images/jesse.webp" },
+  { name: "Johnny Rabb", role: "Drums", image: "/band_images/johnny.webp" },
 ];
 
 export default function About() {
@@ -158,10 +159,13 @@ export default function About() {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
+                    fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                    className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
+                    loading="lazy"
                   />
                   {/* Hover gradient overlay */}
                   <motion.div

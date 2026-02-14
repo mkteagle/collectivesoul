@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
+import Image from "next/image";
 
 const videos = [
   {
@@ -47,13 +48,19 @@ export default function Videos() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeVideo, setActiveVideo] = useState(0);
+  const [playerLoaded, setPlayerLoaded] = useState(false);
 
   const handleVideoSelect = useCallback((index: number) => {
     setActiveVideo(index);
-    // Update iframe src directly to avoid re-mount scroll
-    if (iframeRef.current) {
-      iframeRef.current.src = `https://www.youtube.com/embed/${videos[index].id}?rel=0&modestbranding=1`;
+    if (!playerLoaded) {
+      setPlayerLoaded(true);
+    } else if (iframeRef.current) {
+      iframeRef.current.src = `https://www.youtube.com/embed/${videos[index].id}?rel=0&modestbranding=1&autoplay=1`;
     }
+  }, [playerLoaded]);
+
+  const loadPlayer = useCallback(() => {
+    setPlayerLoaded(true);
   }, []);
 
   return (
@@ -92,14 +99,39 @@ export default function Videos() {
           className="mb-8"
         >
           <div className="relative aspect-video w-full max-w-5xl mx-auto overflow-hidden shadow-2xl shadow-black/80 border border-white/10">
-            <iframe
-              ref={iframeRef}
-              src={`https://www.youtube.com/embed/${videos[0].id}?rel=0&modestbranding=1`}
-              title={videos[activeVideo].title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
-            />
+            {playerLoaded ? (
+              <iframe
+                ref={iframeRef}
+                src={`https://www.youtube.com/embed/${videos[activeVideo].id}?rel=0&modestbranding=1&autoplay=1`}
+                title={videos[activeVideo].title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            ) : (
+              <button
+                onClick={loadPlayer}
+                aria-label="Play video"
+                className="absolute inset-0 w-full h-full cursor-pointer group"
+              >
+                <Image
+                  src={`https://img.youtube.com/vi/${videos[activeVideo].id}/maxresdefault.jpg`}
+                  alt={videos[activeVideo].title}
+                  fill
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 rounded-full bg-magenta/90 group-hover:bg-magenta flex items-center justify-center transition-colors shadow-2xl">
+                    <svg className="w-9 h-9 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
+            )}
           </div>
           <div className="max-w-5xl mx-auto mt-4 flex items-center justify-between">
             <div>
@@ -134,10 +166,13 @@ export default function Videos() {
                   : "border-white/10 hover:border-cyan/50"
               }`}
             >
-              <img
+              <Image
                 src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
                 alt={video.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                fill
+                sizes="(max-width: 1024px) 33vw, 160px"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
               />
               <div
                 className={`absolute inset-0 transition-opacity duration-300 ${

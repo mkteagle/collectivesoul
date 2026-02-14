@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 export default function Documentary() {
   const ref = useRef(null);
@@ -55,10 +56,13 @@ export default function Documentary() {
 
               {/* Main Image */}
               <div className="absolute inset-0 ml-6 mr-6 bg-gradient-to-br from-gray-dark to-black">
-                <img
-                  src="/promo/gmaw-band.jpg"
+                <Image
+                  src="/promo/gmaw-band.webp"
                   alt="Give Me a Word - The Collective Soul Story"
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105 transition-transform"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105 transition-transform"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 

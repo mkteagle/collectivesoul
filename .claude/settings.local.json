@@ -25,7 +25,12 @@
       "WebFetch(domain:www.youtube.com)",
       "WebFetch(domain:imvdb.com)",
       "WebFetch(domain:musicvideo.fandom.com)",
-      "WebFetch(domain:www.classicrockforums.com)"
+      "WebFetch(domain:www.classicrockforums.com)",
+      "Bash(sort:*)",
+      "Bash(brew install:*)",
+      "Bash(pdftotext:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx next build:*)"
     ]
   }
 }

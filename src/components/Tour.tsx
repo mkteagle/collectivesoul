@@ -2,32 +2,34 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 // Bandsintown Artist ID for Collective Soul
 const BANDSINTOWN_ARTIST = "Collective Soul";
-const BANDSINTOWN_APP_ID = "collectivesoul_website";
 
 export default function Tour() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
+  const [widgetLoaded, setWidgetLoaded] = useState(false);
 
-  // Load Bandsintown widget script
+  // Only load Bandsintown widget when section is near viewport
   useEffect(() => {
+    if (!isInView || widgetLoaded) return;
+
     const script = document.createElement("script");
     script.src = "https://widgetv3.bandsintown.com/main.min.js";
     script.async = true;
     script.charset = "utf-8";
     document.body.appendChild(script);
+    setWidgetLoaded(true);
 
     return () => {
-      // Cleanup if needed
       const existingScript = document.querySelector('script[src="https://widgetv3.bandsintown.com/main.min.js"]');
       if (existingScript) {
         existingScript.remove();
       }
     };
-  }, []);
+  }, [isInView, widgetLoaded]);
 
   return (
     <section id="tour" className="relative py-24 lg:py-32 bg-gray-dark" ref={ref}>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Space_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 
@@ -6,19 +6,28 @@ const bebasNeue = Bebas_Neue({
   weight: "400",
   variable: "--font-bebas",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
   variable: "--font-space-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const outfit = Outfit({
   weight: ["300", "400", "600", "800"],
   variable: "--font-outfit",
   subsets: ["latin"],
+  display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#000000",
+};
 
 export const metadata: Metadata = {
   title: "Collective Soul | Touch and Go - 2026",
@@ -68,6 +77,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {/* DNS prefetch for lazy-loaded third-party origins */}
+        <link rel="dns-prefetch" href="https://img.youtube.com" />
+        <link rel="dns-prefetch" href="https://stores.portmerch.com" />
+        <link rel="dns-prefetch" href="https://open.spotify.com" />
+        <link rel="dns-prefetch" href="https://embed.music.apple.com" />
+        <link rel="dns-prefetch" href="https://www.youtube.com" />
+      </head>
       <body
         className={`${bebasNeue.variable} ${spaceMono.variable} ${outfit.variable} font-sans antialiased bg-black text-white`}
       >

@@ -134,6 +134,7 @@ function ContactDialog({ open, onClose }: { open: boolean; onClose: () => void }
           </h3>
           <button
             onClick={onClose}
+            aria-label="Close dialog"
             className="text-gray-light hover:text-white transition-colors"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

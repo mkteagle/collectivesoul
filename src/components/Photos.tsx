@@ -2,18 +2,19 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
+import Image from "next/image";
 
 const photos = [
-  { src: "/images/Collective-Soul-Promo-Photo_Cred-John-Fulton.png" },
-  { src: "/promo/gmaw-band.jpg" },
-  { src: "/images/photo2.jpeg" },
-  { src: "/images/gmaw-47.jpg" },
-  { src: "/images/gmaw-66.jpg" },
-  { src: "/images/CSoul-Battery-7602-2-2.jpg" },
-  { src: "/images/gmaw-75.jpg" },
-  { src: "/images/Collective-Blood-NY18-0468-2-e1651693926905.jpg" },
-  { src: "/images/photo3.jpeg" },
-  { src: "/images/image-8004.jpeg" },
+  { src: "/images/Collective-Soul-Promo-Photo_Cred-John-Fulton.webp" },
+  { src: "/promo/gmaw-band.webp" },
+  { src: "/images/photo2.webp" },
+  { src: "/images/gmaw-47.webp" },
+  { src: "/images/gmaw-66.webp" },
+  { src: "/images/CSoul-Battery-7602-2-2.webp" },
+  { src: "/images/gmaw-75.webp" },
+  { src: "/images/Collective-Blood-NY18-0468-2-e1651693926905.webp" },
+  { src: "/images/photo3.webp" },
+  { src: "/images/image-8004.webp" },
 ];
 
 // Scattered layout positions for visual interest
@@ -91,7 +92,14 @@ export default function Photos() {
               onClick={() => openLightbox(i)}
             >
               <div className="relative w-full h-full overflow-hidden shadow-2xl shadow-black/50 border border-white/10">
-                <img src={photo.src} alt="Collective Soul" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <Image
+                  src={photo.src}
+                  alt="Collective Soul"
+                  fill
+                  sizes="(max-width: 1024px) 55vw, 45vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-magenta scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
                 {i % 3 === 0 && (
@@ -125,7 +133,14 @@ export default function Photos() {
                 onClick={() => openLightbox(actualIndex)}
               >
                 <div className="relative aspect-video overflow-hidden shadow-lg border border-white/10">
-                  <img src={photo.src} alt="Collective Soul" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image
+                    src={photo.src}
+                    alt="Collective Soul"
+                    fill
+                    sizes="33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-cyan scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
                 </div>
@@ -147,6 +162,7 @@ export default function Photos() {
           >
             {/* Close button */}
             <button
+              aria-label="Close lightbox"
               className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50"
               onClick={closeLightbox}
             >
@@ -157,6 +173,7 @@ export default function Photos() {
 
             {/* Previous button */}
             <button
+              aria-label="Previous photo"
               className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-cyan transition-colors z-50"
               onClick={(e) => { e.stopPropagation(); goPrev(); }}
             >
@@ -167,6 +184,7 @@ export default function Photos() {
 
             {/* Next button */}
             <button
+              aria-label="Next photo"
               className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 p-3 text-white/70 hover:text-cyan transition-colors z-50"
               onClick={(e) => { e.stopPropagation(); goNext(); }}
             >
@@ -182,13 +200,16 @@ export default function Photos() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              className="relative max-w-[90vw] max-h-[85vh]"
+              className="relative w-[90vw] h-[85vh]"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <Image
                 src={photos[selectedIndex].src}
                 alt="Collective Soul"
-                className="max-w-full max-h-[85vh] object-contain"
+                fill
+                sizes="90vw"
+                className="object-contain"
+                priority
               />
               <div className="absolute -bottom-12 left-0 right-0 text-center">
                 <span className="font-mono text-xs text-white/50">

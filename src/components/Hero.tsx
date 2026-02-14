@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -169,17 +170,12 @@ export default function Hero() {
         </div>
 
         {/* Right Side - Album Art */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotateY: -20 }}
-          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center justify-center"
-        >
+        <div className="flex items-center justify-center">
           <a
             href="https://recordstoreday.com/SpecialRelease/20149"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative w-[300px] h-[300px] lg:w-[450px] lg:h-[450px] group"
+            className="relative w-[220px] h-[220px] md:w-[300px] md:h-[300px] lg:w-[450px] lg:h-[450px] group"
           >
             {/* Vinyl Record */}
             <motion.div
@@ -224,10 +220,13 @@ export default function Hero() {
                 boxShadow: "0 30px 80px rgba(233, 30, 140, 0.3)",
               }}
             >
-              <img
-                src="/promo/touch-and-go.png"
+              <Image
+                src="/promo/touch-and-go.webp"
                 alt="Touch and Go - Collective Soul"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 440px, (max-width: 1024px) 300px, 450px"
+                className="object-cover"
+                priority
               />
 
               {/* Hover Overlay */}
@@ -246,7 +245,7 @@ export default function Hero() {
               />
             </motion.div>
           </a>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );

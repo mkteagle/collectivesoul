@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const STORE_URL = "https://stores.portmerch.com/collectivesoul/";
 
@@ -71,14 +72,17 @@ export default function Store() {
             >
               {/* Product Image */}
               <div className="relative aspect-square overflow-hidden bg-gray">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
 
                 {product.tag && (
-                  <span className="absolute top-3 left-3 font-mono text-[0.6rem] tracking-[0.15em] px-2 py-1 bg-cyan text-black">
+                  <span className="absolute top-3 left-3 font-mono text-[0.6rem] tracking-[0.15em] px-2 py-1 bg-cyan text-black z-10">
                     {product.tag}
                   </span>
                 )}
@@ -125,4 +129,3 @@ export default function Store() {
     </section>
   );
 }
-

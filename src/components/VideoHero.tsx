@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 
 interface VideoHeroProps {
   videoSrc?: string;
@@ -76,10 +77,15 @@ export default function VideoHero({ videoSrc, posterSrc }: VideoHeroProps) {
 
             {/* Poster image with blur-up effect */}
             {posterSrc && (
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${posterSrc})` }}
-              />
+              <div className="absolute inset-0">
+                <Image
+                  src={posterSrc}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             )}
 
             {/* Loading pulse indicator */}
@@ -180,7 +186,7 @@ export default function VideoHero({ videoSrc, posterSrc }: VideoHeroProps) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             className="mb-6"
           >
             <span className="inline-block font-mono text-xs tracking-[0.2em] px-4 py-2 border border-cyan text-cyan animate-pulse-border">
@@ -191,25 +197,25 @@ export default function VideoHero({ videoSrc, posterSrc }: VideoHeroProps) {
           {/* Main Title */}
           <h1 className="flex flex-col mb-8 lg:mb-12">
             <motion.span
-              initial={{ opacity: 0, y: 60, rotateX: -45 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="font-[family-name:var(--font-bebas)] text-[clamp(5rem,15vw,12rem)] leading-[0.85] tracking-tight"
             >
               TOUCH
             </motion.span>
             <motion.span
-              initial={{ opacity: 0, y: 60, rotateX: -45 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="font-[family-name:var(--font-bebas)] text-[clamp(3rem,10vw,8rem)] leading-[0.85] text-cyan ml-4 lg:ml-12"
             >
               AND
             </motion.span>
             <motion.span
-              initial={{ opacity: 0, y: 60, rotateX: -45 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="font-[family-name:var(--font-bebas)] text-[clamp(5rem,15vw,12rem)] leading-[0.85] tracking-tight text-magenta"
             >
               GO
@@ -218,9 +224,9 @@ export default function VideoHero({ videoSrc, posterSrc }: VideoHeroProps) {
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 mb-12 lg:mb-16"
           >
             <motion.a
@@ -265,17 +271,12 @@ export default function VideoHero({ videoSrc, posterSrc }: VideoHeroProps) {
         </div>
 
         {/* Right Side - Album Art */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotateY: -20 }}
-          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center justify-center"
-        >
+        <div className="flex items-center justify-center">
           <a
             href="https://recordstoreday.com/SpecialRelease/20149"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative w-[350px] h-[350px] lg:w-[550px] lg:h-[550px] group"
+            className="relative w-[240px] h-[240px] md:w-[350px] md:h-[350px] lg:w-[550px] lg:h-[550px] group"
           >
             {/* Vinyl Record */}
             <motion.div
@@ -319,10 +320,13 @@ export default function VideoHero({ videoSrc, posterSrc }: VideoHeroProps) {
                 boxShadow: "0 30px 80px rgba(233, 30, 140, 0.3)",
               }}
             >
-              <img
-                src="/promo/touch-and-go.png"
+              <Image
+                src="/promo/touch-and-go.webp"
                 alt="Touch and Go - Collective Soul"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 480px, (max-width: 1024px) 350px, 550px"
+                className="object-cover"
+                priority
               />
 
               {/* Hover Overlay */}
@@ -341,7 +345,7 @@ export default function VideoHero({ videoSrc, posterSrc }: VideoHeroProps) {
               />
             </motion.div>
           </a>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
