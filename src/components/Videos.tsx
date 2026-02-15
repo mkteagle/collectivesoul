@@ -4,6 +4,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
 import Image from "next/image";
 
+const getThumbnailUrl = (id: string, quality: "maxresdefault" | "hqdefault" | "mqdefault" = "hqdefault") =>
+  `https://img.youtube.com/vi/${id}/${quality}.jpg`;
+
 const videos = [
   {
     id: "_m0bI82Rz_k",
@@ -49,6 +52,7 @@ export default function Videos() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeVideo, setActiveVideo] = useState(0);
   const [playerLoaded, setPlayerLoaded] = useState(false);
+  const [thumbErrors, setThumbErrors] = useState<Record<string, boolean>>({});
 
   const handleVideoSelect = useCallback((index: number) => {
     setActiveVideo(index);
@@ -115,12 +119,20 @@ export default function Videos() {
                 className="absolute inset-0 w-full h-full cursor-pointer group"
               >
                 <Image
-                  src={`https://img.youtube.com/vi/${videos[activeVideo].id}/maxresdefault.jpg`}
+                  src={getThumbnailUrl(
+                    videos[activeVideo].id,
+                    thumbErrors[videos[activeVideo].id] ? "hqdefault" : "maxresdefault"
+                  )}
                   alt={videos[activeVideo].title}
                   fill
                   sizes="(max-width: 1280px) 100vw, 1280px"
                   className="object-cover"
                   priority
+                  onError={() => {
+                    if (!thumbErrors[videos[activeVideo].id]) {
+                      setThumbErrors((prev) => ({ ...prev, [videos[activeVideo].id]: true }));
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -167,7 +179,7 @@ export default function Videos() {
               }`}
             >
               <Image
-                src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
+                src={getThumbnailUrl(video.id, "mqdefault")}
                 alt={video.title}
                 fill
                 sizes="(max-width: 1024px) 33vw, 160px"
