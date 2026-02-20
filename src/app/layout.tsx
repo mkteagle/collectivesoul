@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Space_Mono, Outfit } from "next/font/google";
+import Analytics from "@/components/Analytics";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -88,6 +89,7 @@ export default function RootLayout({
       <body
         className={`${bebasNeue.variable} ${spaceMono.variable} ${outfit.variable} font-sans antialiased bg-black text-white`}
       >
+        <Analytics />
         {/* Halftone overlay effect */}
         <div className="halftone-overlay" />
         {children}

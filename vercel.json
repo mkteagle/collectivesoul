@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/analytics/:path*",
+      "destination": "https://www.mkteagle.com/api/analytics/:path*"
+    }
+  ]
+}
