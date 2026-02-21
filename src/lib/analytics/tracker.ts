@@ -240,14 +240,17 @@ export class AnalyticsTracker {
 
   private async post(url: string, data: unknown): Promise<void> {
     try {
-      await fetch(url, {
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
         keepalive: true,
       });
-    } catch {
-      // Silently fail — analytics should never break the app
+      if (!res.ok) {
+        console.warn(`[analytics] ${url} responded ${res.status}`);
+      }
+    } catch (err) {
+      console.warn("[analytics] fetch failed:", err);
     }
   }
 
